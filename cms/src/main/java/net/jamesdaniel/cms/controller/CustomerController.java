@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import net.jamesdaniel.cms.model.Customers;
 import net.jamesdaniel.cms.service.CustomerService;
+import net.jamesdaniel.cms.service.SystemCustomerService;
 
 
 @Controller
@@ -27,6 +28,9 @@ public class CustomerController {
 
 	@Autowired
 	CustomerService customerService;
+	
+	@Autowired
+	SystemCustomerService systemCustomerService;
 	
 	@RequestMapping(value="/index", method=RequestMethod.GET)
 	public ModelAndView index() {
@@ -69,7 +73,7 @@ public class CustomerController {
 		Customers customer = new Customers();
 		model.addObject("customerForm", customer);
 		
-		return model;		
+		return model;
 	}
 	
 	@RequestMapping(value="/save", method=RequestMethod.POST)

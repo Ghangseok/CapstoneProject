@@ -4,7 +4,7 @@ import java.util.List;
 
 import net.jamesdaniel.cms.model.SystemCustomers;
 
-public interface SystemCustomer {
+public interface SystemCustomerService {
 
 	public List<SystemCustomers> listAllSystemCustomers();
 	

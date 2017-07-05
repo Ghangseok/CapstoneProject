@@ -14,7 +14,7 @@ import net.jamesdaniel.cms.model.SystemCustomers;
 
 @Service
 @Transactional
-public class SystemCustomerImpl implements SystemCustomer {
+public class SystemCustomerServiceImpl implements SystemCustomerService {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(CustomerServiceImpl.class);
 	
