@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.jamesdaniel.cms.model.Customers;
+import net.jamesdaniel.cms.model.Systems;
 import net.jamesdaniel.cms.service.CustomerService;
 import net.jamesdaniel.cms.service.SystemCustomerService;
+import net.jamesdaniel.cms.service.SystemService;
 
 
 @Controller
@@ -30,7 +32,7 @@ public class CustomerController {
 	CustomerService customerService;
 	
 	@Autowired
-	SystemCustomerService systemCustomerService;
+	SystemService systemService;
 	
 	@RequestMapping(value="/index", method=RequestMethod.GET)
 	public ModelAndView index() {
@@ -58,7 +60,7 @@ public class CustomerController {
 		return map;		
 	}
 	
-	@RequestMapping(value="/update", method=RequestMethod.POST)
+	@RequestMapping(value="/update", method={RequestMethod.POST})
 	public ModelAndView update(@RequestParam(value="customerId") String customerId) {
 		ModelAndView model = new ModelAndView("form");
 		Customers customer = customerService.findCustomerById(customerId);
@@ -67,16 +69,18 @@ public class CustomerController {
 		return model;		
 	}
 	
-	@RequestMapping(value="/add", method=RequestMethod.GET)
+	@RequestMapping(value="/add", method={RequestMethod.GET})
 	public ModelAndView add() {
 		ModelAndView model = new ModelAndView("form");
 		Customers customer = new Customers();
+		List<Systems> systemList = systemService.listAllSystems();
 		model.addObject("customerForm", customer);
+		model.addObject("systemList", systemList);
 		
 		return model;
 	}
 	
-	@RequestMapping(value="/save", method=RequestMethod.POST)
+	@RequestMapping(value="/save", method={RequestMethod.POST})
 	public ModelAndView save(@ModelAttribute("customerForm") Customers customer) {
 		customer.setCreateDt("20170619153900");
 		customer.setUpdateDt("20170619153900");
@@ -85,7 +89,7 @@ public class CustomerController {
 		return new ModelAndView("redirect:/customer/index");		
 	}
 	
-	@RequestMapping(value="/delete", method=RequestMethod.POST)
+	@RequestMapping(value="/delete", method={RequestMethod.POST})
 	public ModelAndView delete(@RequestParam(value="customerId") String customerId) {
 		customerService.deleteCustomer(customerId);
 		

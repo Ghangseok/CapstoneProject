@@ -1,6 +1,9 @@
 package net.jamesdaniel.cms.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.*;
 
 
@@ -28,8 +31,19 @@ public class Systems implements Serializable {
 
 	@Column(name="update_dt")
 	private String updateDt;
+	
+	@ManyToMany(mappedBy = "systems")
+	private Set<Customers> customers = new HashSet<Customers>();
 
 	public Systems() {
+	}
+
+	public Set<Customers> getCustomers() {
+		return customers;
+	}
+
+	public void setCustomers(Set<Customers> customers) {
+		this.customers = customers;
 	}
 
 	public String getSystemId() {
