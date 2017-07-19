@@ -5,25 +5,17 @@
 	<artifactId>cms</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	
-	<dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.glassfish.jersey</groupId>
-                <artifactId>jersey-bom</artifactId>
-                <version>${jersey.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+
+	<!-- <dependencyManagement> <dependencies> <dependency> <groupId>org.glassfish.jersey</groupId> 
+		<artifactId>jersey-bom</artifactId> <version>${jersey.version}</version> 
+		<type>pom</type> <scope>import</scope> </dependency> </dependencies> </dependencyManagement> -->
 
 	<properties>
 		<java.version>1.8</java.version>
 		<springframework.version>4.3.9.RELEASE</springframework.version>
 		<slf4j.version>1.7.25</slf4j.version>
 		<logback.version>1.2.3</logback.version>
-		<jersey.version>2.25.1</jersey.version>
+		<!-- jersey.version>2.25.1</jersey.version -->
 	</properties>
 
 	<dependencies>
@@ -143,22 +135,41 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<!-- RESTful Web API -->
-		
-		<!-- jersey-container-servlet-core -->
 		<dependency>
-            <groupId>org.glassfish.jersey.containers</groupId>
-            <artifactId>jersey-container-servlet-core</artifactId>
-            <!-- use the following artifactId if you don't need servlet 2.x compatibility -->
-            <!-- artifactId>jersey-container-servlet</artifactId -->
-        </dependency>
-        <!-- uncomment this to get JSON support
-        <dependency>
-            <groupId>org.glassfish.jersey.media</groupId>
-            <artifactId>jersey-media-moxy</artifactId>
-        </dependency>
-        -->
-        
+			<groupId>commons-validator</groupId>
+			<artifactId>commons-validator</artifactId>
+			<version>1.6</version>
+		</dependency>
+<!-- 
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>javax.mail-api</artifactId>
+			<version>1.5.6</version>
+		</dependency>
+ -->
+		<!-- https://mvnrepository.com/artifact/com.sun.mail/javax.mail -->
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.5.6</version>
+		</dependency>
+
+		<!-- RESTful Web API -->
+
+		<!-- jersey-container-servlet-core -->
+		<!-- use the following artifactId if you don't need servlet 2.x compatibility -->
+		<!-- artifactId>jersey-container-servlet</artifactId -->
+		<!-- <dependency> <groupId>org.glassfish.jersey.containers</groupId> <artifactId>jersey-container-servlet-core</artifactId> 
+			</dependency> -->
+		<!-- uncomment this to get JSON support <dependency> <groupId>org.glassfish.jersey.media</groupId> 
+			<artifactId>jersey-media-moxy</artifactId> </dependency> <dependency> <groupId>org.glassfish.jersey.ext</groupId> 
+			<artifactId>jersey-spring3</artifactId> <version>${jersey.version}</version> 
+			<exclusions> <exclusion> <artifactId>org.springframework</artifactId> <groupId>spring-aop</groupId> 
+			</exclusion> <exclusion> <artifactId>org.springframework</artifactId> <groupId>spring-beans</groupId> 
+			</exclusion> <exclusion> <artifactId>org.springframework</artifactId> <groupId>spring-core</groupId> 
+			</exclusion> <exclusion> <artifactId>org.springframework</artifactId> <groupId>spring-web</groupId> 
+			</exclusion> </exclusions> </dependency> -->
+
 	</dependencies>
 
 	<build>

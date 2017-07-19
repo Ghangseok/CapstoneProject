@@ -5,9 +5,11 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import net.jamesdaniel.cms.model.SystemCustomers;
 
+@Repository
 public class SystemCustomerDaoImpl implements SystemCustomerDao {
 	
 	@Autowired

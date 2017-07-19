@@ -40,8 +40,4 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerDao.findCustomerById(customerId);
 	}
 
-	public void deleteCustomer(String customerId) {
-		customerDao.deleteCustomer(customerId);
-	}
-
 }

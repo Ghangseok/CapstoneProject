@@ -19,6 +19,9 @@ public class Customers implements Serializable {
 	@Id
 	@Column(name="customer_id")
 	private String customerId;
+	
+	@Column(name="password")
+	private String password;
 
 	@Column(name="address_detailed")
 	private String addressDetailed;
@@ -43,11 +46,22 @@ public class Customers implements Serializable {
 	private String postalCode;
 
 	private String province;
+	
+	@Column(name="current_flag")
+	private String currentFlag;
+
+	public String getCurrentFlag() {
+		return currentFlag;
+	}
+
+	public void setCurrentFlag(String currentFlag) {
+		this.currentFlag = currentFlag;
+	}
 
 	@Column(name="update_dt")
 	private String updateDt;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(
 			name = "system_customers",
 			joinColumns = { @JoinColumn(name = "customer_id") },
@@ -73,7 +87,15 @@ public class Customers implements Serializable {
 	public void setCustomerId(String customerId) {
 		this.customerId = customerId;
 	}
+	
+	public String getPassword() {
+		return password;
+	}
 
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
 	public String getAddressDetailed() {
 		return this.addressDetailed;
 	}

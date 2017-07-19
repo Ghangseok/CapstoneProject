@@ -1,17 +1,26 @@
 package net.jamesdaniel.cms.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.format.FormatterRegistry;
+import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+
+import net.jamesdaniel.cms.converter.SystemToSystemsConverter;
 
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "net.jamesdaniel.cms")
 public class WebConfig extends WebMvcConfigurerAdapter {
+	
+	@Autowired
+	SystemToSystemsConverter systemToSystemsConverter;
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -27,6 +36,15 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		return viewResolver;
 	}
 	
+	/**
+     * Configure Converter to be used.
+     * In our example, we need a converter to convert string values[system] to Systems in form.jsp
+     */
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addConverter(systemToSystemsConverter);
+    }
+	
 	/*
 	@Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
@@ -40,6 +58,17 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         converters.add(jacksonMessageConverter);
     }
 	*/
+    
+    @Override
+    public void configurePathMatch(PathMatchConfigurer matcher) {
+        matcher.setUseRegisteredSuffixPatternMatch(true);
+    }
+    
+    
+    @Override
+    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+        configurer.enable();
+    }
 	
 	
 	

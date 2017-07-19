@@ -10,6 +10,5 @@ public interface CustomerService {
 	public void saveOrUpdate(Customers customer);
 	
 	public Customers findCustomerById(String customerId);
-	
-	public void deleteCustomer(String customerId);
+
 }

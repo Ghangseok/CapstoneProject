@@ -11,6 +11,5 @@ public interface CustomerDao {
 	public void saveOrUpdate(Customers customer);
 	
 	public Customers findCustomerById(String customerId);
-	
-	public void deleteCustomer(String customerId);
+
 }
